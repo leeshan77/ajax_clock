@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<title> Ajax get_clock </title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>현재시간 =</h1>
+    <h2 class="h2-clock"></h2>
+</body>
+
+<script>
+    var clock = document.querySelector(".h2-clock");
+    function getTime() {
+        $.ajax({
+          type: "POST",
+          url:"/phps/server_clock.php",
+          success:function(res) {
+            if(res) {
+             var jsonData = JSON.parse(res);
+             var message = jsonData.now_time;
+             clock.innerHTML = message;
+             //clock.innerText = message;
+            }
+          }
+        });
+    }
+
+    function run_clock() {
+        setInterval(getTime, 1000);
+    }
+
+    run_clock();
+
+</script>
+
+</html>

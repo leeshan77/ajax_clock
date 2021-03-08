@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <h1 class = "h1-clock"></h1>
+</body>
+
+<script>
+var clock = document.querySelector(".h1-clock");
+
+function getTime() {
+    var date = new Date();
+    // date Object를 받아오고
+
+    var hour = date.getHours();
+    // 시간을 받아오고
+
+    var minutes = date.getMinutes();
+    // 분도 받아옵니다.
+
+    var seconds = date.getSeconds();
+    // 초까지 받아온후
+
+    //clock.innerText = hour + ":" + minutes + ":" + seconds;
+    clock.innerHTML = ` ${hour<10 ? `0${hour}`: hour}:${minutes<10 ? `0${minutes}`: minutes}:${seconds<10 ? `0${seconds}`: seconds} `
+
+}
+
+
+function init() {
+
+    setInterval(getTime, 1000);
+    // setInterval이라는 함수로 매초마다 실행을 해줍니다.
+    // setInterval은 첫번째 파라메터는 함수이고 두번째는 시간인데 밀리초단위로 받습니다. 1000 = 1초
+
+}
+
+init();
+
+</script>
+
+</html>

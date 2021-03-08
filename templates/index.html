@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <h3>If you click on the "Hide" button, I will disappear.</h3>
+  <button id="hide">Hide</button>
+  <button id="show">Show</button>
+
+  <ul>
+      {% for title in content %}
+      <p>{{ title }}</p>
+      {% endfor %}
+  </ul>
+
+  <p><a href="/clock">clcok으로 이동</a></p>
+  <p><a href="/get_clock">ajax clock으로 이동</a></p>
+  <p><a href="/get_php">ajax php로 이동</a></p>
+  <p><a href="/hello">hello로 이동</a></p>
+
+
+  <script>
+
+      $("#hide").click(function(){
+        $("h3").hide();
+      });
+      $("#show").click(function(){
+        $("h3").show();
+      });
+
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+

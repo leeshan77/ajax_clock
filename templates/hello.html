@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>flask - request - test</h2>
+
+<form action="/method123" method="POST">
+    <label for="fname">학번:</label><br>
+    <input type="text" id="fname" name="num" value=""><br>
+    <label for="lname">이름:</label><br>
+    <input type="text" id="lname" name="name" value=""><br><br>
+
+    {{ ckeditor.create() }}<br><br>
+    <input type="submit" value="확인">
+</form>
+{{ ckeditor.load(pkg_type=cke_type) }}
+{{ ckeditor.config() }}
+
+</body>
+</html>
+
+

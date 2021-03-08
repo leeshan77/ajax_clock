@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h1>ID = {{ id }}</h1>
+	<br>
+    {{ ckeditor.create(value=content) }}
+    <br><br>
+    {{ ckeditor.load(pkg_type='standard') }}
+    {{ ckeditor.config() }}
+
+</body>
+</html>
