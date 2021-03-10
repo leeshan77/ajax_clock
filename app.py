@@ -5,6 +5,10 @@ from flask_ckeditor import CKEditor
 import requests
 from bs4 import BeautifulSoup
 
+import pymongo
+from pymongo import MongoClient
+from pymongo.cursor import CursorType
+
 app = Flask(__name__)
 
 app.config['CKEDITOR_SERVE_LOCAL'] = True
@@ -12,24 +16,39 @@ app.config['CKEDITOR_HEIGHT'] = 200
 
 ckeditor = CKEditor(app)
 
+# my_client = MongoClient("mongodb://localhost:27017/")
+host = "localhost"
+port = 27017
+my_client = MongoClient(host, port)
+
+mydb = my_client['stocks']
+mycol = mydb['sise']
+
 @app.route('/')
 def index():
-    # return render_template("index.html")
 
     company_codes = ["005930", "000660", "005380"]
-    # company_codes = ["005930"]
 
     # while True:
     prices = []
     for item in company_codes:
         now_price = get_price(item)
         prices.append(now_price)
-        print(now_price)
-    print("----------------------")
+        #print(now_price)
+    #print("----------------------")
+
+    mydb.sise.insert_one({'name': '삼성', 'sise': prices[0]})
+    mydb.sise.insert_one({'name': 'sk', 'sise': prices[1]})
+    mydb.sise.insert_one({'name': '현대', 'sise': prices[2]})
+
+    list = mycol.find({}, {"_id":0, "name":1, "sise":1})
+
+    mysise = []
+    for x in list:
+        mysise.append(x)
 
     # time.sleep(5)
-
-    return render_template("index.html", content=prices)
+    return render_template("index.html", content=mysise)
 
 
 def get_bsoup(company_code):
@@ -70,10 +89,6 @@ def method():
 @app.route('/clock')
 def clock():
     return render_template("clock.html")
-
-@app.route('/get_php')
-def get_php():
-    return render_template("get_php.html")
 
 @app.route('/get_clock')
 def get_clock():
